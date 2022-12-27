@@ -1,0 +1,19 @@
+{
+  "name": "spacetraders-v2-ng",
+  "version": "1.0.0",
+  "description": "Angular library for interacting with the spacetraders API, auto-generated from the API docs",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brct-james/spacetraders-v2-ng.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brct-james/spacetraders-v2-ng/issues"
+  },
+  "homepage": "https://github.com/brct-james/spacetraders-v2-ng#readme"
+}
