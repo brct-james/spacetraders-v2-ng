@@ -25,8 +25,8 @@ git submodule update --init --recursive
 Clean the output directory:
 
 ```bash
-rm -rf client-out
-mkdir client-out
+rm -rf client-dist
+mkdir client-dist
 ```
 
 Then run the following command, which uses the openapi-generator-cli docker image to generate the client:
@@ -36,7 +36,7 @@ docker run --rm \
   -v ${PWD}:/local openapitools/openapi-generator-cli generate \
   -i /local/spacetraders-api-docs/reference/SpaceTraders.json \
   -g typescript-angular \
-  -o /local/client-out
+  -o /local/client-dist
 ```
 
 ## Building
