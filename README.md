@@ -2,6 +2,10 @@
 
 Angular library for interacting with the spacetraders API v2, auto-generated from the API docs
 
+## Notes
+
+1. Once v2 docs are merged into main, submodule branch must be updated
+
 ## Setup
 
 Clone the project, including --recurse-submodules:
