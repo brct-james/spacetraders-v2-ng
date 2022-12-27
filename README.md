@@ -39,18 +39,9 @@ docker run --rm \
   -o /local/client-dist
 ```
 
-## Building
-
-To install the required dependencies and to build the typescript sources run:
-
-```bash
-npm install
-npm run build
-```
-
 ## Publishing
 
-First build the package then run ```npm publish dist``` (don't forget to specify the `dist` folder!)
+First build the package then run ```npm publish```
 
 ## Consuming
 
