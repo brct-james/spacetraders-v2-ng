@@ -1,66 +1,30 @@
-# spacetraders-v2-ng
+## @
 
-Angular library for interacting with the spacetraders API v2, auto-generated from the API docs
-
-## Setup
-
-Clone the project, including --recurse-submodules:
-
-```bash
-git clone --recurse-submodules git@github.com:brct-james/spacetraders-v2-ng.git
-```
-
-## Generation
-
-Ensure submodules are initialized and updated:
-
-```bash
-git submodule update --init --recursive
-```
-
-Clean the output directory:
-
-```bash
-rm -rf client-out
-mkdir client-out
-```
-
-Then run the following command, which uses the openapi-generator-cli docker image to generate the client:
-
-```bash
-docker run --rm \
-  -v ${PWD}:/local openapitools/openapi-generator-cli generate \
-  -i /local/spacetraders-api-docs/reference/SpaceTraders.json \
-  -g typescript-angular \
-  -o /local/client-out
-```
-
-## Building
+### Building
 
 To install the required dependencies and to build the typescript sources run:
-
-```bash
+```
 npm install
 npm run build
 ```
 
-## Publishing
+### publishing
 
 First build the package then run ```npm publish dist``` (don't forget to specify the `dist` folder!)
 
-## Consuming
+### consuming
 
 Navigate to the folder of your consuming project and run one of next commands.
 
 _published:_
 
-```bash
+```
 npm install @ --save
 ```
 
 _without publishing (not recommended):_
 
-```bash
+```
 npm install PATH_TO_GENERATED_PACKAGE/dist.tgz --save
 ```
 
@@ -69,14 +33,12 @@ _It's important to take the tgz file, otherwise you'll get trouble with links on
 _using `npm link`:_
 
 In PATH_TO_GENERATED_PACKAGE/dist:
-
-```bash
+```
 npm link
 ```
 
 In your project:
-
-```bash
+```
 npm link 
 ```
 
@@ -84,9 +46,8 @@ __Note for Windows users:__ The Angular CLI has troubles to use linked npm packa
 Please refer to this issue https://github.com/angular/angular-cli/issues/8284 for a solution / workaround.
 Published packages are not effected by this issue.
 
-## Additional Generated Information
 
-### General usage
+#### General usage
 
 In your Angular project:
 
