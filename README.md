@@ -46,8 +46,10 @@ Then build the generated project:
 cd client-dist
 npm i
 npm run build
-cd ..
+cd dist
 ```
+
+Now, edit the package.json in client-dist/dist (use the root package.json as a template)
 
 And finally publish with ```npm publish```
 

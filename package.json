@@ -1,21 +1,55 @@
 {
   "name": "spacetraders-v2-ng",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Angular library for interacting with the spacetraders API v2, auto-generated from the API docs",
-  "files": ["client-dist/dist"],
-  "main": "client-dist/dist/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "author": "brct-james",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brct-james/spacetraders-v2-ng.git"
   },
-  "author": "brct-james",
+  "keywords": [
+    "openapi-client",
+    "openapi-generator",
+    "spacetraders",
+    "space traders",
+    "api",
+    "client",
+    "library",
+    "wrapper",
+    "node",
+    "angular",
+    "typescript"
+  ],
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/brct-james/spacetraders-v2-ng/issues"
   },
-  "keywords": ["spacetraders", "space traders", "api", "client", "library", "wrapper", "node", "angular", "typescript"],
-  "homepage": "https://github.com/brct-james/spacetraders-v2-ng#readme"
+  "homepage": "https://github.com/brct-james/spacetraders-v2-ng#readme",
+  "peerDependencies": {
+    "@angular/core": "^15.0.3",
+    "rxjs": "^7.5.5"
+  },
+  "module": "fesm2015/spacetraders-v2-ng.mjs",
+  "es2020": "fesm2020/spacetraders-v2-ng.mjs",
+  "esm2020": "esm2020/spacetraders-v2-ng.mjs",
+  "fesm2020": "fesm2020/spacetraders-v2-ng.mjs",
+  "fesm2015": "fesm2015/spacetraders-v2-ng.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/spacetraders-v2-ng.mjs",
+      "es2020": "./fesm2020/spacetraders-v2-ng.mjs",
+      "es2015": "./fesm2015/spacetraders-v2-ng.mjs",
+      "node": "./fesm2015/spacetraders-v2-ng.mjs",
+      "default": "./fesm2020/spacetraders-v2-ng.mjs"
+    }
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
 }
