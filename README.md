@@ -36,12 +36,20 @@ docker run --rm \
   -v ${PWD}:/local openapitools/openapi-generator-cli generate \
   -i /local/spacetraders-api-docs/reference/SpaceTraders.json \
   -g typescript-angular \
-  -o /local/client-dist
+  -o /local/client-dist \
+  --additional-properties=npmName=spacetraders-v2-ng,ngVersion=15.0.3,npmVersion=9.2.0,supportsES6=true
 ```
 
-## Publishing
+Then build the generated project:
 
-First build the package then run ```npm publish```
+```bash
+cd client-dist
+npm i
+npm run build
+cd ..
+```
+
+And finally publish with ```npm publish```
 
 ## Consuming
 

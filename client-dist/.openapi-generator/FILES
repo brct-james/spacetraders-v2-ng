@@ -136,5 +136,8 @@ model/waypointFaction.ts
 model/waypointOrbital.ts
 model/waypointTrait.ts
 model/waypointType.ts
+ng-package.json
+package.json
 param.ts
+tsconfig.json
 variables.ts

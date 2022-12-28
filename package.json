@@ -1,8 +1,8 @@
 {
   "name": "spacetraders-v2-ng",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Angular library for interacting with the spacetraders API v2, auto-generated from the API docs",
-  "files": ["client-dist"],
+  "files": ["client-dist/dist"],
   "main": "client-dist/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
