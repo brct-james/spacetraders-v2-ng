@@ -9,13 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ExtractResources201ResponseData } from './extractResources201ResponseData';
+import { Cooldown } from './cooldown';
+import { ScannedWaypoint } from './scannedWaypoint';
 
 
-/**
- * 
- */
-export interface ExtractResources201Response { 
-    data: ExtractResources201ResponseData;
+export interface CreateShipWaypointScan201ResponseData { 
+    cooldown: Cooldown;
+    waypoints: Array<ScannedWaypoint>;
 }
 

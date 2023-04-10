@@ -29,6 +29,8 @@ model/createShipShipScan201Response.ts
 model/createShipShipScan201ResponseData.ts
 model/createShipSystemScan201Response.ts
 model/createShipSystemScan201ResponseData.ts
+model/createShipWaypointScan201Response.ts
+model/createShipWaypointScan201ResponseData.ts
 model/createSurvey201Response.ts
 model/createSurvey201ResponseData.ts
 model/deliverContract200Response.ts
@@ -91,6 +93,7 @@ model/scannedShipFrame.ts
 model/scannedShipMountsInner.ts
 model/scannedShipReactor.ts
 model/scannedSystem.ts
+model/scannedWaypoint.ts
 model/sellCargo201Response.ts
 model/sellCargo201ResponseData.ts
 model/sellCargoRequest.ts
@@ -116,6 +119,7 @@ model/shipRefine200ResponseDataProducedInner.ts
 model/shipRefineRequest.ts
 model/shipRegistration.ts
 model/shipRequirements.ts
+model/shipRole.ts
 model/shipType.ts
 model/shipyard.ts
 model/shipyardShip.ts

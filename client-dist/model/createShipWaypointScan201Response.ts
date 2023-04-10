@@ -9,13 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ExtractResources201ResponseData } from './extractResources201ResponseData';
+import { CreateShipWaypointScan201ResponseData } from './createShipWaypointScan201ResponseData';
 
 
 /**
  * 
  */
-export interface ExtractResources201Response { 
-    data: ExtractResources201ResponseData;
+export interface CreateShipWaypointScan201Response { 
+    data: CreateShipWaypointScan201ResponseData;
 }
 

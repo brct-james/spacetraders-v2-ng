@@ -9,13 +9,27 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ExtractResources201ResponseData } from './extractResources201ResponseData';
 
 
 /**
- * 
+ * The registered role of the ship
  */
-export interface ExtractResources201Response { 
-    data: ExtractResources201ResponseData;
-}
+export type ShipRole = 'FABRICATOR' | 'HARVESTER' | 'HAULER' | 'INTERCEPTOR' | 'EXCAVATOR' | 'TRANSPORT' | 'REPAIR' | 'SURVEYOR' | 'COMMAND' | 'CARRIER' | 'PATROL' | 'SATELLITE' | 'EXPLORER' | 'REFINERY';
+
+export const ShipRole = {
+    Fabricator: 'FABRICATOR' as ShipRole,
+    Harvester: 'HARVESTER' as ShipRole,
+    Hauler: 'HAULER' as ShipRole,
+    Interceptor: 'INTERCEPTOR' as ShipRole,
+    Excavator: 'EXCAVATOR' as ShipRole,
+    Transport: 'TRANSPORT' as ShipRole,
+    Repair: 'REPAIR' as ShipRole,
+    Surveyor: 'SURVEYOR' as ShipRole,
+    Command: 'COMMAND' as ShipRole,
+    Carrier: 'CARRIER' as ShipRole,
+    Patrol: 'PATROL' as ShipRole,
+    Satellite: 'SATELLITE' as ShipRole,
+    Explorer: 'EXPLORER' as ShipRole,
+    Refinery: 'REFINERY' as ShipRole
+};
 

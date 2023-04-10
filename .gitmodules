@@ -1,4 +1,4 @@
 [submodule "spacetraders-api-docs"]
 	path = spacetraders-api-docs
-	url = git@github.com:SpaceTradersAPI/api-docs.git
-	branch = 2.0.0-rc.2
+	url = git@github.com:brct-james/st-v2-api-docs.git
+	branch = v2-improvements
