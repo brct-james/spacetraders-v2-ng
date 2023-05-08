@@ -9,31 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { WaypointTrait } from './waypointTrait';
-import { WaypointOrbital } from './waypointOrbital';
-import { WaypointType } from './waypointType';
-import { WaypointFaction } from './waypointFaction';
-import { Chart } from './chart';
+import { ShipCargo } from './shipCargo';
 
 
 /**
- * A waypoint is a location that ships can travel to such as a Planet, Moon or Space Station.
+ * 
  */
-export interface Waypoint { 
-    symbol: string;
-    type: WaypointType;
-    systemSymbol: string;
-    x: number;
-    y: number;
-    orbitals: Array<WaypointOrbital>;
-    faction?: WaypointFaction;
-    /**
-     * The traits of the waypoint.
-     */
-    traits: Array<WaypointTrait>;
-    chart?: Chart;
+export interface GetMyShipCargo200Response { 
+    data: ShipCargo;
 }
-export namespace Waypoint {
-}
-
 

@@ -1,6 +1,6 @@
 {
   "name": "spacetraders-v2-ng",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Angular library for interacting with the spacetraders API v2, auto-generated from the API docs",
   "author": "brct-james",
   "repository": {

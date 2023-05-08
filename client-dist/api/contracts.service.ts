@@ -1,6 +1,6 @@
 /**
  * SpaceTraders API
- * SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://v2.api.spacetraders.io\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+ * SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: joel@spacetraders.io
@@ -42,7 +42,7 @@ import { Configuration }                                     from '../configurat
 })
 export class ContractsService {
 
-    protected basePath = 'https://v2.api.spacetraders.io';
+    protected basePath = 'https://api.spacetraders.io/v2';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
@@ -105,18 +105,25 @@ export class ContractsService {
      * Accept Contract
      * Accept a contract.
      * @param contractId 
+     * @param contentLength 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public acceptContract(contractId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<AcceptContract200Response>;
-    public acceptContract(contractId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<AcceptContract200Response>>;
-    public acceptContract(contractId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<AcceptContract200Response>>;
-    public acceptContract(contractId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public acceptContract(contractId: string, contentLength: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<AcceptContract200Response>;
+    public acceptContract(contractId: string, contentLength: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<AcceptContract200Response>>;
+    public acceptContract(contractId: string, contentLength: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<AcceptContract200Response>>;
+    public acceptContract(contractId: string, contentLength: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (contractId === null || contractId === undefined) {
             throw new Error('Required parameter contractId was null or undefined when calling acceptContract.');
         }
+        if (contentLength === null || contentLength === undefined) {
+            throw new Error('Required parameter contentLength was null or undefined when calling acceptContract.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (contentLength !== undefined && contentLength !== null) {
+            localVarHeaders = localVarHeaders.set('content-length', String(contentLength));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (AgentToken) required
@@ -248,18 +255,25 @@ export class ContractsService {
      * Fulfill Contract
      * Fulfill a contract
      * @param contractId The ID of the contract
+     * @param contentLength 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public fulfillContract(contractId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<FulfillContract200Response>;
-    public fulfillContract(contractId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<FulfillContract200Response>>;
-    public fulfillContract(contractId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<FulfillContract200Response>>;
-    public fulfillContract(contractId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public fulfillContract(contractId: string, contentLength: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<FulfillContract200Response>;
+    public fulfillContract(contractId: string, contentLength: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<FulfillContract200Response>>;
+    public fulfillContract(contractId: string, contentLength: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<FulfillContract200Response>>;
+    public fulfillContract(contractId: string, contentLength: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (contractId === null || contractId === undefined) {
             throw new Error('Required parameter contractId was null or undefined when calling fulfillContract.');
         }
+        if (contentLength === null || contentLength === undefined) {
+            throw new Error('Required parameter contentLength was null or undefined when calling fulfillContract.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (contentLength !== undefined && contentLength !== null) {
+            localVarHeaders = localVarHeaders.set('content-length', String(contentLength));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (AgentToken) required

@@ -1,6 +1,6 @@
 /**
  * SpaceTraders API
- * SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://v2.api.spacetraders.io\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+ * SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: joel@spacetraders.io
@@ -37,9 +37,13 @@ import { ExtractResourcesRequest } from '../model/extractResourcesRequest';
 // @ts-ignore
 import { GetMyShip200Response } from '../model/getMyShip200Response';
 // @ts-ignore
+import { GetMyShipCargo200Response } from '../model/getMyShipCargo200Response';
+// @ts-ignore
 import { GetMyShips200Response } from '../model/getMyShips200Response';
 // @ts-ignore
 import { GetShipCooldown200Response } from '../model/getShipCooldown200Response';
+// @ts-ignore
+import { GetShipNav200Response } from '../model/getShipNav200Response';
 // @ts-ignore
 import { Jettison200Response } from '../model/jettison200Response';
 // @ts-ignore
@@ -54,6 +58,8 @@ import { NavigateShip200Response } from '../model/navigateShip200Response';
 import { NavigateShipRequest } from '../model/navigateShipRequest';
 // @ts-ignore
 import { OrbitShip200Response } from '../model/orbitShip200Response';
+// @ts-ignore
+import { PatchShipNavRequest } from '../model/patchShipNavRequest';
 // @ts-ignore
 import { PurchaseCargo201Response } from '../model/purchaseCargo201Response';
 // @ts-ignore
@@ -88,7 +94,7 @@ import { Configuration }                                     from '../configurat
 })
 export class FleetService {
 
-    protected basePath = 'https://v2.api.spacetraders.io';
+    protected basePath = 'https://api.spacetraders.io/v2';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
@@ -151,18 +157,25 @@ export class FleetService {
      * Create Chart
      * Command a ship to chart the current waypoint.  Waypoints in the universe are uncharted by default. These locations will not show up in the API until they have been charted by a ship.  Charting a location will record your agent as the one who created the chart.
      * @param shipSymbol The symbol of the ship
+     * @param contentLength 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createChart(shipSymbol: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<CreateChart201Response>;
-    public createChart(shipSymbol: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<CreateChart201Response>>;
-    public createChart(shipSymbol: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<CreateChart201Response>>;
-    public createChart(shipSymbol: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public createChart(shipSymbol: string, contentLength: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<CreateChart201Response>;
+    public createChart(shipSymbol: string, contentLength: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<CreateChart201Response>>;
+    public createChart(shipSymbol: string, contentLength: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<CreateChart201Response>>;
+    public createChart(shipSymbol: string, contentLength: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (shipSymbol === null || shipSymbol === undefined) {
             throw new Error('Required parameter shipSymbol was null or undefined when calling createChart.');
         }
+        if (contentLength === null || contentLength === undefined) {
+            throw new Error('Required parameter contentLength was null or undefined when calling createChart.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (contentLength !== undefined && contentLength !== null) {
+            localVarHeaders = localVarHeaders.set('content-length', String(contentLength));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (AgentToken) required
@@ -217,18 +230,25 @@ export class FleetService {
      * Scan Ships
      * Activate your ship\&#39;s sensor arrays to scan for ship information.
      * @param shipSymbol 
+     * @param contentLength 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createShipShipScan(shipSymbol: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<CreateShipShipScan201Response>;
-    public createShipShipScan(shipSymbol: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<CreateShipShipScan201Response>>;
-    public createShipShipScan(shipSymbol: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<CreateShipShipScan201Response>>;
-    public createShipShipScan(shipSymbol: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public createShipShipScan(shipSymbol: string, contentLength: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<CreateShipShipScan201Response>;
+    public createShipShipScan(shipSymbol: string, contentLength: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<CreateShipShipScan201Response>>;
+    public createShipShipScan(shipSymbol: string, contentLength: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<CreateShipShipScan201Response>>;
+    public createShipShipScan(shipSymbol: string, contentLength: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (shipSymbol === null || shipSymbol === undefined) {
             throw new Error('Required parameter shipSymbol was null or undefined when calling createShipShipScan.');
         }
+        if (contentLength === null || contentLength === undefined) {
+            throw new Error('Required parameter contentLength was null or undefined when calling createShipShipScan.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (contentLength !== undefined && contentLength !== null) {
+            localVarHeaders = localVarHeaders.set('content-length', String(contentLength));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (AgentToken) required
@@ -283,18 +303,25 @@ export class FleetService {
      * Scan Systems
      * Activate your ship\&#39;s sensor arrays to scan for system information.
      * @param shipSymbol 
+     * @param contentLength 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createShipSystemScan(shipSymbol: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<CreateShipSystemScan201Response>;
-    public createShipSystemScan(shipSymbol: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<CreateShipSystemScan201Response>>;
-    public createShipSystemScan(shipSymbol: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<CreateShipSystemScan201Response>>;
-    public createShipSystemScan(shipSymbol: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public createShipSystemScan(shipSymbol: string, contentLength: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<CreateShipSystemScan201Response>;
+    public createShipSystemScan(shipSymbol: string, contentLength: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<CreateShipSystemScan201Response>>;
+    public createShipSystemScan(shipSymbol: string, contentLength: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<CreateShipSystemScan201Response>>;
+    public createShipSystemScan(shipSymbol: string, contentLength: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (shipSymbol === null || shipSymbol === undefined) {
             throw new Error('Required parameter shipSymbol was null or undefined when calling createShipSystemScan.');
         }
+        if (contentLength === null || contentLength === undefined) {
+            throw new Error('Required parameter contentLength was null or undefined when calling createShipSystemScan.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (contentLength !== undefined && contentLength !== null) {
+            localVarHeaders = localVarHeaders.set('content-length', String(contentLength));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (AgentToken) required
@@ -415,18 +442,25 @@ export class FleetService {
      * Create Survey
      * If you want to target specific yields for an extraction, you can survey a waypoint, such as an asteroid field, and send the survey in the body of the extract request. Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown between consecutive survey requests. Surveys will eventually expire after a period of time. Multiple ships can use the same survey for extraction.
      * @param shipSymbol The symbol of the ship
+     * @param contentLength 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createSurvey(shipSymbol: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<CreateSurvey201Response>;
-    public createSurvey(shipSymbol: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<CreateSurvey201Response>>;
-    public createSurvey(shipSymbol: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<CreateSurvey201Response>>;
-    public createSurvey(shipSymbol: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public createSurvey(shipSymbol: string, contentLength: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<CreateSurvey201Response>;
+    public createSurvey(shipSymbol: string, contentLength: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<CreateSurvey201Response>>;
+    public createSurvey(shipSymbol: string, contentLength: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<CreateSurvey201Response>>;
+    public createSurvey(shipSymbol: string, contentLength: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (shipSymbol === null || shipSymbol === undefined) {
             throw new Error('Required parameter shipSymbol was null or undefined when calling createSurvey.');
         }
+        if (contentLength === null || contentLength === undefined) {
+            throw new Error('Required parameter contentLength was null or undefined when calling createSurvey.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (contentLength !== undefined && contentLength !== null) {
+            localVarHeaders = localVarHeaders.set('content-length', String(contentLength));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (AgentToken) required
@@ -481,18 +515,25 @@ export class FleetService {
      * Dock Ship
      * Attempt to dock your ship at it\&#39;s current location. Docking will only succeed if the waypoint is a dockable location, and your ship is capable of docking at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
      * @param shipSymbol The symbol of the ship
+     * @param contentLength 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public dockShip(shipSymbol: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<DockShip200Response>;
-    public dockShip(shipSymbol: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<DockShip200Response>>;
-    public dockShip(shipSymbol: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<DockShip200Response>>;
-    public dockShip(shipSymbol: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public dockShip(shipSymbol: string, contentLength: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<DockShip200Response>;
+    public dockShip(shipSymbol: string, contentLength: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<DockShip200Response>>;
+    public dockShip(shipSymbol: string, contentLength: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<DockShip200Response>>;
+    public dockShip(shipSymbol: string, contentLength: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (shipSymbol === null || shipSymbol === undefined) {
             throw new Error('Required parameter shipSymbol was null or undefined when calling dockShip.');
         }
+        if (contentLength === null || contentLength === undefined) {
+            throw new Error('Required parameter contentLength was null or undefined when calling dockShip.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (contentLength !== undefined && contentLength !== null) {
+            localVarHeaders = localVarHeaders.set('content-length', String(contentLength));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (AgentToken) required
@@ -687,6 +728,72 @@ export class FleetService {
     }
 
     /**
+     * Get Ship Cargo
+     * Retrieve the cargo of your ship.
+     * @param shipSymbol The symbol of the ship
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getMyShipCargo(shipSymbol: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetMyShipCargo200Response>;
+    public getMyShipCargo(shipSymbol: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetMyShipCargo200Response>>;
+    public getMyShipCargo(shipSymbol: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetMyShipCargo200Response>>;
+    public getMyShipCargo(shipSymbol: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (shipSymbol === null || shipSymbol === undefined) {
+            throw new Error('Required parameter shipSymbol was null or undefined when calling getMyShipCargo.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (AgentToken) required
+        localVarCredential = this.configuration.lookupCredential('AgentToken');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/my/ships/${this.configuration.encodeParam({name: "shipSymbol", value: shipSymbol, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/cargo`;
+        return this.httpClient.request<GetMyShipCargo200Response>('get', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * List Ships
      * Retrieve all of your ships.
      * @param page What entry offset to request
@@ -816,6 +923,72 @@ export class FleetService {
 
         let localVarPath = `/my/ships/${this.configuration.encodeParam({name: "shipSymbol", value: shipSymbol, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/cooldown`;
         return this.httpClient.request<GetShipCooldown200Response>('get', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get Ship Nav
+     * Get the current nav status of a ship.
+     * @param shipSymbol The ship symbol
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getShipNav(shipSymbol: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetShipNav200Response>;
+    public getShipNav(shipSymbol: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetShipNav200Response>>;
+    public getShipNav(shipSymbol: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetShipNav200Response>>;
+    public getShipNav(shipSymbol: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (shipSymbol === null || shipSymbol === undefined) {
+            throw new Error('Required parameter shipSymbol was null or undefined when calling getShipNav.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (AgentToken) required
+        localVarCredential = this.configuration.lookupCredential('AgentToken');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/my/ships/${this.configuration.encodeParam({name: "shipSymbol", value: shipSymbol, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/nav`;
+        return this.httpClient.request<GetShipNav200Response>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -1062,18 +1235,25 @@ export class FleetService {
      * Orbit Ship
      * Attempt to move your ship into orbit at it\&#39;s current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
      * @param shipSymbol The symbol of the ship
+     * @param contentLength 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public orbitShip(shipSymbol: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<OrbitShip200Response>;
-    public orbitShip(shipSymbol: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<OrbitShip200Response>>;
-    public orbitShip(shipSymbol: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<OrbitShip200Response>>;
-    public orbitShip(shipSymbol: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public orbitShip(shipSymbol: string, contentLength: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<OrbitShip200Response>;
+    public orbitShip(shipSymbol: string, contentLength: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<OrbitShip200Response>>;
+    public orbitShip(shipSymbol: string, contentLength: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<OrbitShip200Response>>;
+    public orbitShip(shipSymbol: string, contentLength: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (shipSymbol === null || shipSymbol === undefined) {
             throw new Error('Required parameter shipSymbol was null or undefined when calling orbitShip.');
         }
+        if (contentLength === null || contentLength === undefined) {
+            throw new Error('Required parameter contentLength was null or undefined when calling orbitShip.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (contentLength !== undefined && contentLength !== null) {
+            localVarHeaders = localVarHeaders.set('content-length', String(contentLength));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (AgentToken) required
@@ -1115,6 +1295,83 @@ export class FleetService {
         return this.httpClient.request<OrbitShip200Response>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Patch Ship Nav
+     * Update the nav data of a ship, such as the flight mode.
+     * @param shipSymbol The ship symbol
+     * @param patchShipNavRequest 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public patchShipNav(shipSymbol: string, patchShipNavRequest?: PatchShipNavRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetShipNav200Response>;
+    public patchShipNav(shipSymbol: string, patchShipNavRequest?: PatchShipNavRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetShipNav200Response>>;
+    public patchShipNav(shipSymbol: string, patchShipNavRequest?: PatchShipNavRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetShipNav200Response>>;
+    public patchShipNav(shipSymbol: string, patchShipNavRequest?: PatchShipNavRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (shipSymbol === null || shipSymbol === undefined) {
+            throw new Error('Required parameter shipSymbol was null or undefined when calling patchShipNav.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (AgentToken) required
+        localVarCredential = this.configuration.lookupCredential('AgentToken');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/my/ships/${this.configuration.encodeParam({name: "shipSymbol", value: shipSymbol, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/nav`;
+        return this.httpClient.request<GetShipNav200Response>('patch', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                body: patchShipNavRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -1278,18 +1535,25 @@ export class FleetService {
      * Refuel Ship
      * Refuel your ship from the local market.
      * @param shipSymbol 
+     * @param contentLength 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public refuelShip(shipSymbol: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<RefuelShip200Response>;
-    public refuelShip(shipSymbol: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<RefuelShip200Response>>;
-    public refuelShip(shipSymbol: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<RefuelShip200Response>>;
-    public refuelShip(shipSymbol: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public refuelShip(shipSymbol: string, contentLength: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<RefuelShip200Response>;
+    public refuelShip(shipSymbol: string, contentLength: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<RefuelShip200Response>>;
+    public refuelShip(shipSymbol: string, contentLength: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<RefuelShip200Response>>;
+    public refuelShip(shipSymbol: string, contentLength: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (shipSymbol === null || shipSymbol === undefined) {
             throw new Error('Required parameter shipSymbol was null or undefined when calling refuelShip.');
         }
+        if (contentLength === null || contentLength === undefined) {
+            throw new Error('Required parameter contentLength was null or undefined when calling refuelShip.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
+        if (contentLength !== undefined && contentLength !== null) {
+            localVarHeaders = localVarHeaders.set('content-length', String(contentLength));
+        }
 
         let localVarCredential: string | undefined;
         // authentication (AgentToken) required
