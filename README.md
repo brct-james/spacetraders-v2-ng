@@ -21,7 +21,7 @@ git clone --recurse-submodules git@github.com:brct-james/spacetraders-v2-ng.git
 Ensure submodules are initialized and updated:
 
 ```bash
-git submodule update --init --recursive
+git submodule update --init --recursive --remote
 ```
 
 Clean the output directory:

@@ -23,7 +23,7 @@ export interface ShipRegistration {
     /**
      * The symbol of the faction the ship is registered with
      */
-    factionSymbol?: string;
+    factionSymbol: string;
     role: ShipRole;
 }
 export namespace ShipRegistration {

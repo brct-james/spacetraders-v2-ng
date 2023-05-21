@@ -11,10 +11,12 @@
  */
 import { ShipFuel } from './shipFuel';
 import { Agent } from './agent';
+import { MarketTransaction } from './marketTransaction';
 
 
 export interface RefuelShip200ResponseData { 
     agent: Agent;
     fuel: ShipFuel;
+    transaction: MarketTransaction;
 }
 

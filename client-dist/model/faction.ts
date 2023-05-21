@@ -21,5 +21,9 @@ export interface Faction {
     description: string;
     headquarters: string;
     traits: Array<FactionTrait>;
+    /**
+     * Whether or not the faction is currently recruiting new agents.
+     */
+    isRecruiting: boolean;
 }
 

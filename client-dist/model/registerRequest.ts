@@ -20,6 +20,10 @@ export interface RegisterRequest {
      * How other agents will see your ships and information.
      */
     symbol: string;
+    /**
+     * Your email address. This is used if you reserved your call sign between resets.
+     */
+    email?: string;
 }
 export namespace RegisterRequest {
     export type FactionEnum = 'COSMIC' | 'VOID' | 'GALACTIC' | 'QUANTUM' | 'DOMINION';

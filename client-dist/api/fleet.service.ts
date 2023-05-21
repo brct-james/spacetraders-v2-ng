@@ -57,6 +57,8 @@ import { NavigateShip200Response } from '../model/navigateShip200Response';
 // @ts-ignore
 import { NavigateShipRequest } from '../model/navigateShipRequest';
 // @ts-ignore
+import { NegotiateContract200Response } from '../model/negotiateContract200Response';
+// @ts-ignore
 import { OrbitShip200Response } from '../model/orbitShip200Response';
 // @ts-ignore
 import { PatchShipNavRequest } from '../model/patchShipNavRequest';
@@ -1079,7 +1081,7 @@ export class FleetService {
 
     /**
      * Jump Ship
-     * Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+     * Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
      * @param shipSymbol 
      * @param jumpShipRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -1222,6 +1224,83 @@ export class FleetService {
             {
                 context: localVarHttpContext,
                 body: navigateShipRequest,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Negotiate Contract
+     * 
+     * @param shipSymbol 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public negotiateContract(shipSymbol: string, body?: any, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<NegotiateContract200Response>;
+    public negotiateContract(shipSymbol: string, body?: any, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<NegotiateContract200Response>>;
+    public negotiateContract(shipSymbol: string, body?: any, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<NegotiateContract200Response>>;
+    public negotiateContract(shipSymbol: string, body?: any, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (shipSymbol === null || shipSymbol === undefined) {
+            throw new Error('Required parameter shipSymbol was null or undefined when calling negotiateContract.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (AgentToken) required
+        localVarCredential = this.configuration.lookupCredential('AgentToken');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/my/ships/${this.configuration.encodeParam({name: "shipSymbol", value: shipSymbol, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/negotiate/contract`;
+        return this.httpClient.request<NegotiateContract200Response>('post', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                body: body,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

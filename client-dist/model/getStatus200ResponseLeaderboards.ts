@@ -9,27 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { GetStatus200ResponseLeaderboardsMostSubmittedChartsInner } from './getStatus200ResponseLeaderboardsMostSubmittedChartsInner';
+import { GetStatus200ResponseLeaderboardsMostCreditsInner } from './getStatus200ResponseLeaderboardsMostCreditsInner';
 
 
-/**
- * A cooldown is a period of time in which a ship cannot perform certain actions.
- */
-export interface Cooldown { 
-    /**
-     * The symbol of the ship that is on cooldown
-     */
-    shipSymbol: string;
-    /**
-     * The total duration of the cooldown in seconds
-     */
-    totalSeconds: number;
-    /**
-     * The remaining duration of the cooldown in seconds
-     */
-    remainingSeconds: number;
-    /**
-     * The date and time when the cooldown expires in ISO 8601 format
-     */
-    expiration?: string;
+export interface GetStatus200ResponseLeaderboards { 
+    mostCredits: Array<GetStatus200ResponseLeaderboardsMostCreditsInner>;
+    mostSubmittedCharts: Array<GetStatus200ResponseLeaderboardsMostSubmittedChartsInner>;
 }
 

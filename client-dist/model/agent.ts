@@ -25,5 +25,9 @@ export interface Agent {
      * The number of credits the agent has available. Credits can be negative if funds have been overdrawn.
      */
     credits: number;
+    /**
+     * The faction the agent started with.
+     */
+    startingFaction: string;
 }
 

@@ -247,7 +247,7 @@ export class SystemsService {
 
     /**
      * Get Shipyard
-     * Get the shipyard for a waypoint.
+     * Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
      * @param systemSymbol The system symbol
      * @param waypointSymbol The waypoint symbol
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.

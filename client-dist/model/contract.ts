@@ -32,9 +32,13 @@ export interface Contract {
      */
     fulfilled: boolean;
     /**
-     * The time at which the contract expires
+     * Deprecated in favor of deadlineToAccept
      */
     expiration: string;
+    /**
+     * The time at which the contract is no longer available to be accepted
+     */
+    deadlineToAccept?: string;
 }
 export namespace Contract {
     export type TypeEnum = 'PROCUREMENT' | 'TRANSPORT' | 'SHUTTLE';

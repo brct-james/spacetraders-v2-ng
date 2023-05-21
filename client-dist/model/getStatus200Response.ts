@@ -9,27 +9,34 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { GetStatus200ResponseServerResets } from './getStatus200ResponseServerResets';
+import { GetStatus200ResponseStats } from './getStatus200ResponseStats';
+import { GetStatus200ResponseAnnouncementsInner } from './getStatus200ResponseAnnouncementsInner';
+import { GetStatus200ResponseLeaderboards } from './getStatus200ResponseLeaderboards';
+import { GetStatus200ResponseLinksInner } from './getStatus200ResponseLinksInner';
 
 
 /**
- * A cooldown is a period of time in which a ship cannot perform certain actions.
+ * OK
  */
-export interface Cooldown { 
+export interface GetStatus200Response { 
     /**
-     * The symbol of the ship that is on cooldown
+     * The current status of the game server.
      */
-    shipSymbol: string;
+    status: string;
     /**
-     * The total duration of the cooldown in seconds
+     * The current version of the API.
      */
-    totalSeconds: number;
+    version: string;
     /**
-     * The remaining duration of the cooldown in seconds
+     * The date and time when the game server was last reset.
      */
-    remainingSeconds: number;
-    /**
-     * The date and time when the cooldown expires in ISO 8601 format
-     */
-    expiration?: string;
+    resetDate: string;
+    description: string;
+    stats: GetStatus200ResponseStats;
+    leaderboards: GetStatus200ResponseLeaderboards;
+    serverResets: GetStatus200ResponseServerResets;
+    announcements: Array<GetStatus200ResponseAnnouncementsInner>;
+    links: Array<GetStatus200ResponseLinksInner>;
 }
 
